@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sample Scraping Site</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <div class="">
+        <a class="navbar-brand text-center badge bg-primary text-wrap" href="#">
+          <h1 class="text-light lead">Scraping site</h1>
+        </a>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="jumbotron text-center mt-5 lead">
+        TOP 100 music from howebiz scrapped from
+        <a href="https://www.howwebiz.ug/hot100"> here </a>
+        <br />
+        ALso checkout code at
+        <a href="https://github.com/bdllhdrss3/scraptool"> GITHUB </a>
+        <br />
+        <div class="container" style="width: 450px">
+          <ul class="list-group">
+            <li class="list-group-item">
+              ABDALLAH IDRISS LUTAAYA - 1900718782 19/U/18782/PS
+            </li>
+            <li class="list-group-item">
+              NABIRYE JULIANA - 1900719143 19/U/19143/PS
+            </li>
+            <li class="list-group-item">
+              WANUBA KENETH - 1900719370 19/U/19370/PS
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h3>TOP 100 LOCAL MUSIC TODAY</h3>
+      <a href="/download" class="nav-link" download
+        >DOWNLOAD DATA SCRAPPED (DATABASE)</a
+      >
+      <table class="table table-striped table-hover" id="table"></table>
+    </div>
+  </body>
+  <script>
+    var table = document.getElementById("table");
+
+    fetch("/scrape")
+      .then((response) => response.json())
+      .then((data) => {
+        for (x of data) {
+          let row = table.insertRow(-1);
+          let cell1 = row.insertCell(0);
+          let cell2 = row.insertCell(1);
+          let cell3 = row.insertCell(2);
+          cell1.innerHTML = `<h1 class="display-1">${x.rank}</h1>`;
+          cell1.style.width = "10%";
+          cell2.innerHTML = `<img class="img-thumbnail rounded float-start" style="width:130px;height:130px;" src="${x.image}"></img>`;
+          cell2.style.width = "20%";
+          cell3.innerHTML = `<div><span><h3 class="text-success">${x.title}</h3></span> <br> <span><h5 class="text-primary">${x.artist}</h5></span></div>`;
+        }
+      });
+  </script>
+</html>
