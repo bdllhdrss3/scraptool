@@ -40,6 +40,4 @@ npm run serve
 
 - Abdallah Idriss Lutaaya
 
-- Keneth Wanuba
 
-- Nabirye Juliana
